@@ -1,0 +1,23 @@
+{
+    "name": "questionnaire",
+    "version": "0.0.1",
+    "description": "An online/offline questionnaire application",
+    "attachments": ["js", "css"],
+    "dependencies": {
+        "attachments": null,
+        "modules": null,
+        "properties": null,
+        "coffee-script-precompiler": null,
+        "handlebars": null
+    },
+    "modules": ["app"],
+    "coffee-script": {
+        "modules": ["app"],
+        "attachments": ["js"]
+    },
+    "handlebars": {
+        "all_partials": false,
+        "templates": "templates"
+    },
+    "load": "app/app"
+}
