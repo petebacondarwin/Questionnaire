@@ -1,7 +1,3 @@
-### The validate_doc_update function to be exported from the design doc.
-types = require('kanso/types')
-app_types = require('./types')
-
+# The validate_doc_update function to be exported from the design doc.
 module.exports = (newDoc, oldDoc, userCtx)->
-  types.validate_doc_update app_types, newDoc, oldDoc, userCtx
-###
+  
