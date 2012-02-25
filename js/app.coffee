@@ -2,8 +2,6 @@
 allAnswered = () ->
   $("ul#summary span.error").length is 0
 
-find = $.mobile.activePage.find
-
 # Set up the event handlers when the JQuery Mobile framework initializes
 $(document).bind "mobileinit", () ->
   $("div:jqmData(role='page')").live 'pageshow', (event, ui) ->

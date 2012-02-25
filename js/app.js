@@ -1,11 +1,9 @@
 (function() {
-  var allAnswered, find;
+  var allAnswered;
 
   allAnswered = function() {
     return $("ul#summary span.error").length === 0;
   };
-
-  find = $.mobile.activePage.find;
 
   $(document).bind("mobileinit", function() {
     $("div:jqmData(role='page')").live('pageshow', function(event, ui) {

@@ -1,39 +1,39 @@
 # Show functions to be exported from the design doc.
 
-handlebars = require('handlebars');
+dust = require('dust');
 
-# Setup the templates
-page_templates = 
-  choice: handlebars.template['page-choice.hb']
-intro_template = handlebars.template['page-intro.hb']
-summary_template = handlebars.template['page-summary.hb']
-complete_template = handlebars.template['page-complete.hb']
-base_template = handlebars.template['base.hb']
+render = (name, context)->
+  r = ''
+  dust.render name, context, (err, result)->
+    throw err if err
+    r = result  
+  r
 
 # This function returns a questionnaire in the form of an JQuery Mobile HTML page
 # Each question in the questionnaire is rendered using a template specific to that question type
 
 exports.questionnaire = (doc,req)->
   pages = []
-  pages.push intro_template(doc)
+  pages.push render('page-intro.hb',doc)
+  num_questions = doc.questions.length
   for question, i in doc.questions
       #Add some meta data to the question
       question.index = i+1
       question.page_id = "question_"+(i+1)
       question.first = (i==0)
-      question.last = (i==questions.length-1)
-      question.previous = question.first ? null : "question_"+i
-      question.next = question.last ? null : "question_"+(i+2)
+      question.last = (i==num_questions-1)
+      question.previous = "question_#{i}" unless question.first
+      question.next = "question_#{i+2}" unless question.last
       # Render the template and add it to the list
-      pages.push page_templates[question.type](question)
+      pages.push render("page-#{question.type}.hb",question)
   # Render the summary page, which lists all the responses to the questions
-  pages.push summary_template({"questionnaire":doc,"last": "question_"+questions.length})
+  pages.push render("page-summary.hb",{"questionnaire":doc,"last": "question_"+num_questions})
   # Render the completion page which has a thank you message
-  pages.push complete_template(doc)
+  pages.push render("page-complete.hb",doc)
 
   # Render the overall layout of the page  
   date = new Date()
-  base_template
+  render "base.hb",
     "document": doc
     "submission":
       "date": date.toDateString()

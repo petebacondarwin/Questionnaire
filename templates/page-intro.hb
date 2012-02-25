@@ -1,7 +1,7 @@
 <div data-role="page" id="intro" data-backbtn="false" data-theme="c">
    <div data-role="header">
-      <h1>{{title}}</h1>
-      <h2>{{description}}</h2>
+      <h1>{title}</h1>
+      <h2>{description}</h2>
    </div>
    <div data-role="content" class="content">
       <p>Please enter the following information.</p>

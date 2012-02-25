@@ -8,15 +8,14 @@
         "modules": null,
         "properties": null,
         "coffee-script-precompiler": null,
-        "handlebars": null
+        "dust": null
     },
     "modules": ["app"],
     "coffee-script": {
         "modules": ["app"],
-        "attachments": ["js"]
+        "attachments": ["js/app.coffee"]
     },
-    "handlebars": {
-        "all_partials": false,
+    "dust": {
         "templates": "templates"
     },
     "load": "app/app"
